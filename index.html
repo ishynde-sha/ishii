@@ -634,6 +634,51 @@ footer p {
 .card:nth-child(3) {
     animation-delay: 0.2s;
 }
+/* Slider Styles */
+.slider-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.slide.active {
+    display: block;
+}
+
+/* Slider Buttons */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(15, 23, 42, 0.7);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 0.5rem 0.9rem;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 2;
+    transition: 0.3s;
+}
+
+.slider-btn:hover {
+    background: var(--primary-color);
+}
+
+.slider-btn.prev {
+    left: 10px;
+}
+
+.slider-btn.next {
+    right: 10px;
+}
 
 </style>
 </head>
@@ -703,6 +748,27 @@ footer p {
                     <a href="https://ishynde-sha.github.io/IT-Business-Wesite/" class="btn btn-primary">View Project</a>
                 </div>
             </div>
+<!-- UI Screenshot samples -->
+ <div class="card card-business">
+
+    <div class="card-header slider-container">
+        <img src="1.png" class="slide active">
+        <img src="2.png" class="slide">
+        <img src="3.png" class="slide">
+
+        <!-- Slider Buttons -->
+        <button class="slider-btn prev">&#10094;</button>
+        <button class="slider-btn next">&#10095;</button>
+    </div>
+
+    <div class="card-body">
+        <h3>Mobile UI Design for iOS</h3>
+        <p>Collection of UI/UX screens designed for websites and apps using Figma, Canva, and Illustrator.</p>
+        <a href="https://www.behance.net/gallery/219390761/FriendlyConnect-iOS-Chat-App-UI-Design" class="btn btn-primary">View Project</a>
+    </div>
+
+</div>
+<!-- UI Screenshot samples -->
 
         </div>
     </div>
@@ -800,7 +866,7 @@ footer p {
                 </div>
                 <div class="skill-name">Java</div>
                 <span class="skill-level">Intermediate</span>
-            </div>
+            </div
 
             <div class="skill-circle">
                 <div class="skill-icon">
@@ -847,6 +913,37 @@ footer p {
         <p style="font-size: 0.9rem;">Designed & Developed with ❤️</p>
     </div>
 </footer>
+<script>
+const slides = document.querySelectorAll('.slide');
+const prevBtn = document.querySelector('.prev');
+const nextBtn = document.querySelector('.next');
+let currentSlide = 0;
+
+function showSlide(index) {
+    slides.forEach((slide) => slide.classList.remove('active'));
+    slides[index].classList.add('active');
+}
+
+// Next & Prev Buttons
+nextBtn.addEventListener('click', () => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+});
+
+prevBtn.addEventListener('click', () => {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+});
+
+// Auto Slide every 3 seconds
+setInterval(() => {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+}, 3000);
+
+// Show first slide
+showSlide(currentSlide);
+</script>
 
 </body>
 
